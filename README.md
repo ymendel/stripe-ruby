@@ -147,17 +147,23 @@ API.
 
 ## Development
 
+The test suite depends on [stripestub], so make sure to fetch and run it from a
+background terminal:
+
+    go get -u github.com/brandur/stripestub
+    stripestub -port 6065
+
 Run all tests:
 
-    bundle exec rake
+    STRIPE_STUB_PORT=6065 bundle exec rake
 
 Run a single test suite:
 
-    bundle exec ruby -Ilib/ test/stripe/util_test.rb
+    STRIPE_STUB_PORT=6065 bundle exec ruby -Ilib/ test/stripe/util_test.rb
 
 Run a single test:
 
-    bundle exec ruby -Ilib/ test/stripe/util_test.rb -n /should.convert.names.to.symbols/
+    STRIPE_STUB_PORT=6065 bundle exec ruby -Ilib/ test/stripe/util_test.rb -n /should.convert.names.to.symbols/
 
 Update bundled CA certificates from the [Mozilla cURL release][curl]:
 
@@ -172,6 +178,7 @@ Update bundled OpenAPI specification from the canonical repository:
 [curl]: http://curl.haxx.se/docs/caextract.html
 [faraday]: https://github.com/lostisland/faraday
 [idempotency-keys]: https://stripe.com/docs/api/ruby#idempotent_requests
+[stripestub]: https://github.com/brandur/stripestub
 
 <!--
 # vim: set tw=79:
