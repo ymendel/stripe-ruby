@@ -17,7 +17,7 @@ sudo: false
 env:
   global:
     - STRIPE_LOCAL_PORT=6065
-    - STRIPE_LOCAL_VERSION=0.1.8
+    - STRIPE_LOCAL_VERSION=0.1.9
 
 cache:
   directories:
