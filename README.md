@@ -147,11 +147,12 @@ API.
 
 ## Development
 
-The test suite depends on [stripestub], so make sure to fetch and run it from a
-background terminal:
+The test suite depends on [stripelocal], so make sure to fetch and run it from a
+background terminal ([stripelocal's README][stripelocal] also contains
+instructions for installing via Homebrew and other methods):
 
-    go get -u github.com/brandur/stripestub
-    stripestub -port 6065
+    go get -u github.com/brandur/stripelocal
+    stripelocal -port 6065
 
 Run all tests:
 
@@ -178,7 +179,7 @@ Update bundled OpenAPI specification from the canonical repository:
 [curl]: http://curl.haxx.se/docs/caextract.html
 [faraday]: https://github.com/lostisland/faraday
 [idempotency-keys]: https://stripe.com/docs/api/ruby#idempotent_requests
-[stripestub]: https://github.com/brandur/stripestub
+[stripelocal]: https://github.com/brandur/stripelocal
 
 <!--
 # vim: set tw=79:
