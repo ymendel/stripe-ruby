@@ -7,7 +7,6 @@ require 'webmock/test_unit'
 
 PROJECT_ROOT = File.expand_path("../../", __FILE__)
 
-require File.expand_path('../api_fixtures', __FILE__)
 require File.expand_path('../test_data', __FILE__)
 
 STUB_PORT = ENV["STRIPE_STUB_PORT"]
@@ -33,12 +32,6 @@ class Test::Unit::TestCase
   include Stripe::TestData
   include Mocha
 
-  # Fixtures are available in tests using something like:
-  #
-  #   API_FIXTURES[:charge][:id]
-  #
-  API_FIXTURES = APIFixtures.new
-
   setup do
     Stripe.api_key = "foo"
     Stripe.api_base = "http://localhost:#{STUB_PORT}"
@@ -49,9 +42,7 @@ class Test::Unit::TestCase
     Stripe.api_key = nil
   end
 
-  private
-
-  def stub_connect
+  private def stub_connect
     stub_request(:any, /^#{Stripe.connect_base}/).to_return(:body => "{}")
   end
 end
