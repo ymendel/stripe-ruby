@@ -9,22 +9,22 @@ PROJECT_ROOT = File.expand_path("../../", __FILE__)
 
 require File.expand_path('../test_data', __FILE__)
 
-STUB_PORT = ENV["STRIPE_STUB_PORT"]
-if STUB_PORT.nil?
-  abort("Please specify STRIPE_STUB_PORT. See README for setup instructions.")
+LOCAL_PORT = ENV["STRIPE_LOCAL_PORT"]
+if LOCAL_PORT.nil?
+  abort("Please specify STRIPE_LOCAL_PORT. See README for setup instructions.")
 end
 
-# Disable all real network connections except those that are outgoing to our
-# Stripe API stub.
-WebMock.disable_net_connect!(allow: "localhost:#{STUB_PORT}")
+# Disable all real network connections except those that are outgoing to
+# stripelocal.
+WebMock.disable_net_connect!(allow: "localhost:#{LOCAL_PORT}")
 
-# Try one initial test connection to the stub so that if there's a problem we
-# can print one error and fail fast so that it's more clear to the user how
+# Try one initial test connection to stripelocal so that if there's a problem
+# we can print one error and fail fast so that it's more clear to the user how
 # they should fix the problem.
 begin
-  Faraday.get("http://localhost:#{STUB_PORT}/")
+  Faraday.get("http://localhost:#{LOCAL_PORT}/")
 rescue Faraday::ConnectionFailed
-  abort("Couldn't reach Stripe stub server at `localhost:#{STUB_PORT}`. Is " \
+  abort("Couldn't reach stripelocal server at `localhost:#{LOCAL_PORT}`. Is " \
     "it running? Please see README for setup instructions.")
 end
 
@@ -34,7 +34,7 @@ class Test::Unit::TestCase
 
   setup do
     Stripe.api_key = "foo"
-    Stripe.api_base = "http://localhost:#{STUB_PORT}"
+    Stripe.api_base = "http://localhost:#{LOCAL_PORT}"
     stub_connect
   end
 

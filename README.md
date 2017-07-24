@@ -155,15 +155,15 @@ background terminal:
 
 Run all tests:
 
-    STRIPE_STUB_PORT=6065 bundle exec rake
+    STRIPE_LOCAL_PORT=6065 bundle exec rake
 
 Run a single test suite:
 
-    STRIPE_STUB_PORT=6065 bundle exec ruby -Ilib/ test/stripe/util_test.rb
+    STRIPE_LOCAL_PORT=6065 bundle exec ruby -Ilib/ test/stripe/util_test.rb
 
 Run a single test:
 
-    STRIPE_STUB_PORT=6065 bundle exec ruby -Ilib/ test/stripe/util_test.rb -n /should.convert.names.to.symbols/
+    STRIPE_LOCAL_PORT=6065 bundle exec ruby -Ilib/ test/stripe/util_test.rb -n /should.convert.names.to.symbols/
 
 Update bundled CA certificates from the [Mozilla cURL release][curl]:
 
