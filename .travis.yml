@@ -32,7 +32,7 @@ before_install:
       tar -zxf "stripelocal/stripelocal_${STRIPE_LOCAL_VERSION}_linux_amd64.tar.gz" -C "stripelocal/stripelocal_${STRIPE_LOCAL_VERSION}/"
     fi
   - |
-    stripelocal/stripelocal_${STRIPE_LOCAL_VERSION}/stripelocal -port ${STRIPE_LOCAL_PORT} &
+    stripelocal/stripelocal_${STRIPE_LOCAL_VERSION}/stripelocal -port ${STRIPE_LOCAL_PORT} > /dev/null &
     STRIPE_LOCAL_PID=$!
 
 script:
