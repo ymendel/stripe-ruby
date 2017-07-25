@@ -531,21 +531,23 @@ module Stripe
       end
     end
 
-    private def charge_fixture
+    private
+
+    def charge_fixture
       @@fixtures[:charge]
     end
 
-    private def customer_fixture
+    def customer_fixture
       @@fixtures[:customer]
     end
 
-    private def get_fixture(key)
+    def get_fixture(key)
       @@fixtures.fetch(key)
     end
 
     # Retrieves fixtures from stripelocal and does very simple memoization.
     # Prefer the use of named methods like #JSON.generate(charge_fixture).
-    private def set_fixture(key)
+    def set_fixture(key)
       return @@fixtures[key] if @@fixtures.key?(key)
 
       obj = yield
