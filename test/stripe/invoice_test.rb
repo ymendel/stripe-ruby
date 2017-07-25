@@ -46,14 +46,14 @@ module Stripe
       end
 
       should "pay invoice with a specific source" do
-        invoice = Stripe::Invoice.retrieve(FIXTURE[:id])
+        invoice = Stripe::Invoice.retrieve("in_123")
         invoice = invoice.pay(
-          source: API_FIXTURES[:customer][:sources][:data][0][:id]
+          source: 'src_123',
         )
         assert_requested :post,
-          "#{Stripe.api_base}/v1/invoices/#{FIXTURE[:id]}/pay",
+          "#{Stripe.api_base}/v1/invoices/#{invoice.id}/pay",
           body: {
-            source: API_FIXTURES[:customer][:sources][:data][0][:id]
+            source: 'src_123',
           }
         assert invoice.kind_of?(Stripe::Invoice)
       end

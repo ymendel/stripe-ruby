@@ -459,14 +459,20 @@ module Stripe
       context "params serialization" do
         should 'convert nil params to empty string' do
           client = StripeClient.new
-          client.execute_request(:get, '/v1/invoices/upcoming',
-                                 params: {customer: API_FIXTURES[:customer][:id],
-                                          subscription: API_FIXTURES[:subscription][:id],
-                                          coupon: nil})
-          assert_requested(:get, "#{Stripe.api_base}/v1/invoices/upcoming?",
-                           query: { customer: API_FIXTURES[:customer][:id],
-                                    subscription: API_FIXTURES[:subscription][:id],
-                                    coupon: '' })
+          client.execute_request(:get, '/v1/invoices/upcoming', params: {
+             customer: 'cus_123',
+             subscription: 'sub_123',
+             coupon: nil
+          })
+          assert_requested(
+            :get,
+            "#{Stripe.api_base}/v1/invoices/upcoming?",
+            query: {
+              customer: 'cus_123',
+              subscription: 'sub_123',
+              coupon: ''
+            }
+          )
         end
       end
     end
